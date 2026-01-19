@@ -1,73 +1,74 @@
-# React + TypeScript + Vite
+# AI Chat Interface
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A high-performance AI chat interface built with React, TypeScript, and Vite, optimized for handling large message volumes and real-time streaming.
 
-Currently, two official plugins are available:
+## 🚀 Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**[View Live Application](https://igorok-by.github.io/ai-chat-interface/)**
 
-## React Compiler
+The application is automatically deployed to GitHub Pages on every push to the main branch.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ✨ Features
 
-## Expanding the ESLint configuration
+- **High Performance**: Direct DOM patching for streaming messages bypasses React re-renders
+- **Virtual Scrolling**: Efficient rendering of 100+ messages using `react-virtuoso`
+- **Real-time Streaming**: Web Worker-based text generation with smooth updates
+- **Dark Mode Support**: Fully responsive UI with Tailwind CSS
+- **Smart Auto-scroll**: Automatically follows new messages, pauses when scrolling up
+- **Optimized Rendering**: GPU-accelerated scrolling and aggressive pre-rendering
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠️ Tech Stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **React 19** + **TypeScript**
+- **Vite** for blazing-fast development
+- **Zustand** for state management
+- **react-virtuoso** for virtual scrolling
+- **Web Workers** for background processing
+- **Tailwind CSS** for styling
+- **Marked** + **DOMPurify** for safe Markdown rendering
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 📦 Installation
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🏃 Development
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
+
+Open [http://localhost:5173](http://localhost:5173) to view the app.
+
+## 🏗️ Build
+
+```bash
+npm run build
+```
+
+Builds the app for production to the `dist` folder.
+
+## 🚀 Deployment
+
+The app automatically deploys to GitHub Pages via GitHub Actions when you push to `main`.
+
+To deploy manually:
+```bash
+npm run deploy
+```
+
+## 📝 Architecture Highlights
+
+### Direct DOM Patching
+The streaming message component uses direct `innerHTML` updates via refs, completely bypassing React's reconciliation for zero-cost real-time updates.
+
+### Event-Driven Updates
+Streaming chunks are routed through a custom event emitter, avoiding expensive state updates during high-frequency token arrivals.
+
+### Aggressive Pre-rendering
+Virtual list configured with 2000px overscan in both directions to eliminate white flashes during rapid scrolling.
+
+## 📄 License
+
+MIT
