@@ -89,10 +89,12 @@ function App() {
       </header>
       
       <main className="flex-1 overflow-hidden flex flex-col relative">
-         <div className="flex-1 min-h-0">
+         <div className="flex-1 min-h-0 w-full max-w-5xl mx-auto">
             <ChatList />
          </div>
-         <ChatInput />
+         <div className="w-full max-w-5xl mx-auto">
+            <ChatInput />
+         </div>
       </main>
     </div>
   )
